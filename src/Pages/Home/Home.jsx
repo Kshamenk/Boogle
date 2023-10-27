@@ -3,7 +3,7 @@ import './Home.css'
 import AppsIcon from '@mui/icons-material/Apps';
 import { Avatar, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
-import Search from '../Components/Search/Search';
+import Search from '../../Components/Search/Search';
 
 
 const Home = () => {
