@@ -1,16 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import MicIcon from '@mui/icons-material/Mic';
 import {GoogleInput} from '../GoogleInput/GoogleInput'
 import { GoogleButtons } from '../GoogleButtons/GoogleButtons';
 import './Search.css'
+import { setTextString } from '../../features/textSlice';
+import { useDispatch } from 'react-redux';
+import {useNavigate} from 'react-router-dom'
+
+
 
 const Search = ({hideButtons = false}) => {
 const [input, setInput] = useState('')
+const dispatch = useDispatch()
+const history = useNavigate()
 
 
 const search = (e)=>{
   e.preventDefault()
+  dispatch(setTextString(input))
+  history('/search')  //revisar el push
+  
 }
 
   return (
