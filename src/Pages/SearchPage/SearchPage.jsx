@@ -5,9 +5,15 @@ import Search from '../../Components/Search/Search'
 import SearchIcon from '@mui/icons-material/Search';
 import { Apps, Description, Image, LocalOffer, MoreVert, Room } from '@mui/icons-material';
 import { Avatar } from '@mui/material';
-
+import { selectTextString } from '../../features/textSlice';
+import { useSelector } from 'react-redux';
 
 const SearchPage = () => {
+
+const textString = useSelector(selectTextString);
+
+
+
   return (
     <div className='searchPage'>
       <div className="searchPage__header">
@@ -58,6 +64,7 @@ const SearchPage = () => {
         <Avatar className='headerRight__avatar'/>
       </div>
       </div>
+      <h1>{textString}</h1>
     </div>
   )
 }
