@@ -7,10 +7,12 @@ import { Apps, Description, Image, LocalOffer, MoreVert, Room } from '@mui/icons
 import { Avatar } from '@mui/material';
 import { selectTextString } from '../../features/textSlice';
 import { useSelector } from 'react-redux';
+import useGoogleSearch from '../../Hooks/useGoogle';
 
 const SearchPage = () => {
 
 const textString = useSelector(selectTextString);
+const {data} = useGoogleSearch(textString)
 
 
 
@@ -64,7 +66,15 @@ const textString = useSelector(selectTextString);
         <Avatar className='headerRight__avatar'/>
       </div>
       </div>
-      <h1>{textString}</h1>
+      {textString &&
+      
+      <div className='searchPage__result'>
+        <p className='searchPage__resultCount'>
+          About {data?.searchInformation.formattedTotalResults} results ({data?.searchInformation.formattedSearchTime} seconds)
+        </p>
+      </div>
+      
+      }
     </div>
   )
 }
