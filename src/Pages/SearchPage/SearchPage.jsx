@@ -8,6 +8,7 @@ import { Avatar } from '@mui/material';
 import { selectTextString } from '../../features/textSlice';
 import { useSelector } from 'react-redux';
 import useGoogleSearch from '../../Hooks/useGoogle';
+import Result from '../../Components/Result/Result';
 
 const SearchPage = () => {
 
@@ -66,15 +67,19 @@ const {data} = useGoogleSearch(textString)
         <Avatar className='headerRight__avatar'/>
       </div>
       </div>
-      {textString &&
-      
-      <div className='searchPage__result'>
+      {textString && (
+      <div className='searchPage__results'>
         <p className='searchPage__resultCount'>
           About {data?.searchInformation.formattedTotalResults} results ({data?.searchInformation.formattedSearchTime} seconds)
         </p>
-      </div>
-      
+        {
+        data?.items.map(item => (
+          <Result key={item.cacheId} data={item}/>
+        ))
       }
+      </div>
+      )}
+      
     </div>
   )
 }
